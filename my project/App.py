@@ -13,12 +13,27 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 # AWS Setup
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
-sns = boto3.client('sns', region_name='us-east-1')
-try:
-    ticket_table = dynamodb.Table('Tickets')
-except Exception as e:
-    ticket_table = None  # Handle if table doesn't exist
+# AWS Configuration
+AWS_REGION = 'us-east-1'
+AWS_ACCESS_KEY_ID = 'your_key_id'
+AWS_SECRET_ACCESS_KEY = 'your_secret'
+SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:604665149129:fixitnow_Topic'
+USERS_TABLE = 'fixitnow_user'
+SERVICES_TABLE = 'fixitnow_service'
+
+dynamodb = boto3.resource(
+    'dynamodb',
+    region_name=AWS_REGION,
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+)
+
+sns = boto3.client(
+    'sns',
+    region_name=AWS_REGION,
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+)
 
 # ---------------------- LOGIN REQUIRED DECORATOR ---------------------
 def login_required(f):
