@@ -179,7 +179,7 @@ def store_ticket():
             Subject="Ticket Booking Confirmation"
         )
     except Exception as e:
-        print(f"Error sending SMS: {e}")
+        print(f"Error sending SMS: {arn:aws:sns:us-east-1:767828767507:movie_magic}")
 
     return jsonify({'status': 'success', 'ticket_id': ticket.id})
 
