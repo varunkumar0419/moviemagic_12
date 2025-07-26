@@ -13,6 +13,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+# AWS Setup
+# AWS Setup
 AWS_REGION = 'us-east-1'
 AWS_ACCESS_KEY_ID = 'your_key_id'
 AWS_SECRET_ACCESS_KEY = 'your_secret'
@@ -20,6 +22,7 @@ SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:767828767507:ticket'
 USERS_TABLE = 'fixitnow_user'
 SERVICES_TABLE = 'fixitnow_service'
 
+# Initialize DynamoDB and SNS
 dynamodb = boto3.resource(
     'dynamodb',
     region_name=AWS_REGION,
@@ -27,12 +30,15 @@ dynamodb = boto3.resource(
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY
 )
 
+ticket_table = dynamodb.Table('Tickets')  # ✅ Moved here, after `dynamodb` is defined
+
 sns = boto3.client(
     'sns',
     region_name=AWS_REGION,
     aws_access_key_id=AWS_ACCESS_KEY_ID,
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY
 )
+
 
 # ---------------------- LOGIN REQUIRED DECORATOR ---------------------
 def login_required(f):
