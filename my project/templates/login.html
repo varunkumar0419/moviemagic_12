@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url("{{ url_for('static', filename='images/bg.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .login-container {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+      width: 350px;
+      text-align: center;
+      animation: slideIn 1.2s ease-out;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2em;
+      text-shadow: 0 0 10px #fff, 0 0 20px #00f0ff;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #00c3ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px #00c3ff;
+    }
+
+    button:hover {
+      background: #008ecf;
+      box-shadow: 0 0 15px #00c3ff, 0 0 30px #00c3ff;
+    }
+
+    .register-link {
+      margin-top: 15px;
+      display: block;
+      font-size: 14px;
+      color: #aad;
+      text-decoration: none;
+    }
+
+    .register-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Welcome Back</h2>
+
+    <form method="POST">
+      <input type="text" name="username" placeholder="Enter Username" required>
+      <input type="password" name="password" placeholder="Enter Password" required>
+      <button type="submit">Login</button>
+    </form>
+
+    <a class="register-link" href="/register">Don't have an account? Register here</a>
+  </div>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <script>
+        alert("{{ messages[0] }}");
+      </script>
+    {% endif %}
+  {% endwith %}
+
+</body>
+</html>

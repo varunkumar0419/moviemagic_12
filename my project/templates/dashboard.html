@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .booking-card {
+      background: white;
+      padding: 20px;
+      margin: 15px auto;
+      max-width: 600px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .booking-card h3 {
+      margin-top: 0;
+      color: #007bff;
+    }
+
+    .booking-card p {
+      margin: 5px 0;
+    }
+
+    .no-bookings {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 18px;
+      color: #666;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Your Bookings</h2>
+
+  {% if bookings %}
+    {% for booking in bookings %}
+      <div class="booking-card">
+        <h3>{{ booking.movie.title }} ({{ booking.movie.language }})</h3>
+        <p><strong>Seats:</strong> {{ booking.seats }}</p>
+        <p><strong>Showtime:</strong> {{ booking.showtime }}</p>
+        <p><strong>Booked By:</strong> {{ booking.name }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="no-bookings">You have no bookings yet.</p>
+  {% endif %}
+
+  <a href="/">← Back to Home</a>
+
+</body>
+</html>

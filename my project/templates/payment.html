@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Payment</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f8f8;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      color: #e63946;
+    }
+    .section {
+      margin-bottom: 25px;
+    }
+    input[type="text"], input[type="email"], input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .btn {
+      background: #e63946;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #d62828;
+    }
+    .payment-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .pay-option {
+      width: 120px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .pay-option img {
+      width: 50px;
+      margin-bottom: 5px;
+    }
+    .qr-page, .success-page, .fail-page {
+      display: none;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .qr-code {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="payment-form">
+  <h2>Complete Your Booking</h2>
+
+  <div class="section">
+    <label>Email Address</label>
+    <input type="email" placeholder="Enter Email">
+    <label>Mobile Number</label>
+    <input type="tel" placeholder="Enter Mobile Number">
+    <button class="btn" onclick="showPaymentOptions()">Continue</button>
+  </div>
+
+  <div class="section" id="payment-methods" style="display:none;">
+    <h3>Select Payment Method</h3>
+    <div class="payment-options">
+      <div class="pay-option" onclick="goToQR('Google Pay')">
+       <img src="{{ url_for('static', filename='images/paytem.jpg') }} " alt ="Google Pay">
+      </div>
+      <div class="pay-option" onclick="goToQR('PhonePe')">
+        <img src="{{ url_for('static', filename='images/phpay.jpg') }} " alt="PhonePe">
+        PhonePe
+      </div>
+      <div class="pay-option" onclick="goToQR('BHIM')">
+        <img src="{{ url_for('static', filename='images/.jpg') }}" alt="BHIM">
+        BHIM
+      </div>
+      <div class="pay-option" onclick="goToQR('Paytm')">
+       <img src="{{ url_for('static', filename='images/paytem.jpg') }} " alt="Paytm">
+        Paytm
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container qr-page" id="qrPage">
+  <h3>Scan & Pay via <span id="selected-method"></span></h3>
+   <img src="{{ url_for('static', filename='images/scanners.jpg') }}" class="qr-code" alt="QR">
+  <p>or use UPI ID: <strong>8096110689@ibl</strong></p>
+  <button class="btn" onclick="handlePaymentResult(true)">Simulate Success</button>
+  <button class="btn" onclick="handlePaymentResult(false)">Simulate Failure</button>
+</div>
+
+<div class="container success-page" id="successPage">
+  <h2>🎉 Payment Successful</h2>
+  <p>Thank you for booking! Here is your ticket:</p>
+  <p><strong>Movie:</strong> Saiyaara (UA16+)</p>
+  <p><strong>Time:</strong> 12:55 PM | GOLD G2, G3</p>
+</div>
+
+<div class="container fail-page" id="failPage">
+  <h2>❌ Transaction Failed</h2>
+  <p>Please try again.</p>
+  <button class="btn" onclick="location.reload()">Go to Home</button>
+</div>
+
+<script>
+  function showPaymentOptions() {
+    document.getElementById('payment-methods').style.display = 'block';
+  }
+
+  function goToQR(method) {
+    document.getElementById('payment-form').style.display = 'none';
+    document.getElementById('qrPage').style.display = 'block';
+    document.getElementById('selected-method').textContent = method;
+  }
+
+  function handlePaymentResult(success) {
+    document.getElementById('qrPage').style.display = 'none';
+    if (success) {
+      document.getElementById('successPage').style.display = 'block';
+    } else {
+      document.getElementById('failPage').style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>

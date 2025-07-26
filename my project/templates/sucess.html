@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Confirmed</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8ffe8;
+      padding: 40px;
+      text-align: center;
+    }
+    h2 {
+      color: green;
+    }
+    p {
+      font-size: 18px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    a:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Booking Confirmed!</h2>
+  <p><strong>Movie:</strong> {{ movie }}</p>
+  <p><strong>Seats:</strong> {{ seat }}</p>
+  <p><strong>Showtime:</strong> {{ showtime }}</p>
+  <a href="/dashboard">Go to Dashboard</a>
+
+</body>
+</html>

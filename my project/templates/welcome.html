@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url("{{ url_for('static', filename='images/magic.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+    }
+
+    .welcome-container {
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      animation: fadeIn 2s ease-out;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #fff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
+    }
+
+    p {
+      font-size: 1.3em;
+      line-height: 1.5;
+      color: #f0f8ff;
+      margin-bottom: 30px;
+    }
+
+    .login-btn {
+      padding: 12px 30px;
+      font-size: 16px;
+      background: #00c3ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00c3ff, 0 0 20px #00c3ff;
+      text-decoration: none;
+    }
+
+    .login-btn:hover {
+      background: #008ecf;
+      box-shadow: 0 0 15px #00c3ff, 0 0 30px #00c3ff;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-container">
+    <h1>Welcome to the Magical World</h1>
+    <a href="/login" class="login-btn">Login to Begin</a>
+  </div>
+</body>
+</html>

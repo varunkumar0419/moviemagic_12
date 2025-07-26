@@ -1,0 +1,16 @@
+
+body {font-family:sans-serif;padding:20px;}
+.seat-grid {display:grid;grid-template-columns: repeat(10,50px);grid-gap:5px;}
+.seat {padding:5px;border:1px solid #444;text-align:center;}
+.seat.booked {background:#f88;color:#fff;}
+input[type=checkbox]{margin-right:5px;}
+
+/* This file is optional if you're using only Bootstrap + inline style */
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+

@@ -1,0 +1,13 @@
+
+<!DOCTYPE html>
+<html><head><link rel="stylesheet" href="/static/style.css"></head><body>
+<h1>Reviews for {{movie}}</h1>
+<form method="post">
+<input name="name" placeholder="Your Name" required><textarea name="review" placeholder="Your review" required></textarea><button>Submit</button>
+</form>
+<hr>
+{% for name,review in reviews %}
+<div class="rev"><strong>{{name}}</strong>: {{review}}</div>
+{% endfor %}
+<a href="/">Back</a>
+</body></html>

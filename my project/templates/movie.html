@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Payment</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #e50914;
+      margin-bottom: 20px;
+    }
+
+    .order-summary {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      background: #fafafa;
+      margin-bottom: 30px;
+    }
+
+    .order-summary p {
+      margin: 8px 0;
+    }
+
+    .pay-btn {
+      background-color: #e50914;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .pay-btn:hover {
+      background-color: #b0070f;
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 400px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: -10px;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    .qr-code {
+      margin-top: 20px;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      font-size: 20px;
+      color: green;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Payment for Movie Ticket</h2>
+
+    <div class="order-summary">
+      <p><strong>Movie:</strong> Saiyaara (UA 16+)</p>
+      <p><strong>Theater:</strong> AMB Cinemas, Gachibowli</p>
+      <p><strong>Show Time:</strong> 20 Jul, 2025 — 12:55 PM</p>
+      <p><strong>Seats:</strong> G2, G3</p>
+      <p><strong>Ticket Price:</strong> ₹590.00</p>
+      <p><strong>Convenience Fees:</strong> ₹66.08</p>
+      <hr>
+      <p><strong>Total Amount Payable:</strong> ₹656.08</p>
+    </div>
+
+    <button class="pay-btn" onclick="showQRCode()">Make Payment</button>
+
+    <div class="success-message" id="successMessage">
+      ✅ Payment Successful! Your ticket has been booked.
+    </div>
+  </div>
+
+  <!-- QR Code Modal -->
+  <div id="qrModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Scan QR to Pay</h3>
+      <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=example@upi&pn=MovieMagic&am=656.08&cu=INR&size=200x200" alt="QR Code">
+      </div>
+      <p style="margin-top: 10px;">Pay ₹656.08 via UPI</p>
+      <button class="pay-btn" onclick="confirmPayment()">I Have Paid</button>
+    </div>
+  </div>
+
+  <script>
+    function showQRCode() {
+      document.getElementById('qrModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('qrModal').style.display = 'none';
+    }
+
+    function confirmPayment() {
+      closeModal();
+      document.getElementById('successMessage').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

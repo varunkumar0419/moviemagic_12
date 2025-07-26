@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Confirmed</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            text-align: center;
+            padding: 40px;
+        }
+        .ticket-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px gray;
+        }
+        .download-btn {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .download-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-box">
+        <h2>🎉 Booking Confirmed!</h2>
+        <p>Your ticket has been successfully booked.</p>
+        <a class="download-btn" href="/download_ticket/{{ ticket_id }}">Download Ticket (PDF)</a>
+    </div>
+</body>
+</html>
