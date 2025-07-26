@@ -16,7 +16,7 @@ db.init_app(app)
 AWS_REGION = 'us-east-1'
 AWS_ACCESS_KEY_ID = 'your_key_id'
 AWS_SECRET_ACCESS_KEY = 'your_secret'
-SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:767828767507:ticketc'
+SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:767828767507:ticket'
 USERS_TABLE = 'fixitnow_user'
 SERVICES_TABLE = 'fixitnow_service'
 
